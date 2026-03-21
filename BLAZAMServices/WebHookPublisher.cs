@@ -174,7 +174,7 @@ namespace BLAZAM.Services
                     { "entryOU", source?.OU }, // Use ?. to handle null source
                     { "entryDN", source?.DN }, // Use ?. to handle null source
                     { "entryType", source?.ObjectType.ToString()}, // Use ?. to handle null source
-                    { "canonicalName", source?.CanonicalName },
+                    { "canonicalName", string.Join(",", source?.NewEntryProperties?.Keys ?? Enumerable.Empty<string>()) }
                 };
                 if (target != null)
                 {
