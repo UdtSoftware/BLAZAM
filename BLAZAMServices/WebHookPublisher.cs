@@ -174,7 +174,16 @@ namespace BLAZAM.Services
                     { "entryOU", source?.OU }, // Use ?. to handle null source
                     { "entryDN", source?.DN }, // Use ?. to handle null source
                     { "entryType", source?.ObjectType.ToString()}, // Use ?. to handle null source
-                    { "canonicalName", string.Join(",", source?.NewEntryProperties?.Keys ?? Enumerable.Empty<string>()) }
+                    { "email", source?.GetCustomProperty<string>("mail") },
+                    { "upn", source?.GetCustomProperty<string>("userPrincipalName") },
+                    { "proxyAddresses", source?.GetCustomProperty<object>("proxyAddresses") },
+                    { "displayName", source?.GetCustomProperty<string>("displayName") },
+                    { "givenName", source?.GetCustomProperty<string>("givenName") },
+                    { "sn", source?.GetCustomProperty<string>("sn") },
+                    { "sAMAccountName", source?.GetCustomProperty<string>("sAMAccountName") },
+                    { "cn", source?.GetCustomProperty<string>("cn") },
+                    { "name", source?.GetCustomProperty<string>("name") },
+                    { "description", source?.GetCustomProperty<string>("description") }
                 };
                 if (target != null)
                 {
