@@ -165,6 +165,10 @@ namespace BLAZAM.Services
                     { "type", eventType}
                 };
                 var attemptId = Guid.NewGuid();
+
+                var mail = source?.DirectoryEntry?.Properties["mail"]?.Value?.ToString();
+                var upn = source?.DirectoryEntry?.Properties["userPrincipalName"]?.Value?.ToString();
+
                 Dictionary<string, object?> data = new()
                 {
                   { "id", msgId },
@@ -173,6 +177,8 @@ namespace BLAZAM.Services
                     { "entryOU", source?.OU }, // Use ?. to handle null source
                     { "entryDN", source?.DN }, // Use ?. to handle null source
                     { "entryType", source?.ObjectType.ToString()}, // Use ?. to handle null source
+                    { "mail", mail },
+                    { "userPrincipalName", upn }
                 };
                 if (target != null)
                 {
