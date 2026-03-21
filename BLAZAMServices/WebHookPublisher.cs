@@ -165,6 +165,7 @@ namespace BLAZAM.Services
                     { "type", eventType}
                 };
                 var attemptId = Guid.NewGuid();
+
                 Dictionary<string, object?> data = new()
                 {
                   { "id", msgId },
@@ -173,7 +174,23 @@ namespace BLAZAM.Services
                     { "entryOU", source?.OU }, // Use ?. to handle null source
                     { "entryDN", source?.DN }, // Use ?. to handle null source
                     { "entryType", source?.ObjectType.ToString()}, // Use ?. to handle null source
+//                    { "email", source?.GetCustomProperty<string>("mail") },
+//                    { "givenName", source?.GetCustomProperty<string>("givenName") },
+//                    { "middleName", source?.GetCustomProperty<string>("middleName") },
+//                    { "sn", source?.GetCustomProperty<string>("sn") },
+//                    { "sAMAccountName", source?.GetCustomProperty<string>("sAMAccountName") },
                 };
+
+                var sourceUser = source as IADUser;
+                if (sourceUser !=null)
+                {
+                    data.Add("email", sourceUser?.Email);
+                    data.Add("givenName", sourceUser?.GivenName);
+                    data.Add("middleName", sourceUser?.MiddleName);
+                    data.Add("sn", sourceUser?.Surname);
+                    data.Add("sAMAccountName", sourceUser?.SamAccountName);
+                }
+
                 if (target != null)
                 {
                     data.Add("target", target.CanonicalName);
