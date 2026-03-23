@@ -175,12 +175,10 @@ namespace BLAZAM.Services
                     { "entryDN", source?.DN }, // Use ?. to handle null source
                     { "entryType", source?.ObjectType.ToString()}, // Use ?. to handle null source
                     { "email", source?.GetCustomProperty<string>("mail") },
-                    { "displayName", source?.GetCustomProperty<string>("displayName") },
                     { "givenName", source?.GetCustomProperty<string>("givenName") },
+                    { "middleName", source?.GetCustomProperty<string>("middleName") },
                     { "sn", source?.GetCustomProperty<string>("sn") },
                     { "sAMAccountName", source?.GetCustomProperty<string>("sAMAccountName") },
-                    { "cn", source?.GetCustomProperty<string>("cn") },
-                    { "name", source?.GetCustomProperty<string>("name") },
                 };
                 if (target != null)
                 {
