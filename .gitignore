@@ -376,3 +376,13 @@ FodyWeavers.xsd
 /BLAZAM/database - rules.db
 /coveragereport
 /BLAZAM/Plugins/google.json
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+classes/
+out/
